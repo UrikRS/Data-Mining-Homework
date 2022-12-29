@@ -141,7 +141,11 @@ weighted avg       0.86      0.86      0.85     10000
 
 ### Discussions or comments
 
-觀察 classification report 中對 churn=1 的預測評鑑可得知 decision tree classifier model 在預測 churn=1 的表現普通。我認爲可能是因爲從資料分析的各個對抗圖來看，並沒有找到明顯影響判斷 churn=0 或 churn=1 的因素，decision tree classifier model 對於深層規則的探索能力有限。
+觀察 classification report 中對 churn=1 的預測評鑑可得知 decision tree classifier model 在預測 churn=1 的表現普通。
+
+我認爲可能是因爲從資料分析的各個對抗圖來看，並沒有找到明顯影響判斷 churn=0 或 churn=1 的因素，decision tree classifier model 對於深層規則的探索能力有限。
+
+或者是因爲此份資料的目標屬性比例上有偏差，可以考慮資料增強的方法來增加準確度。
 
 ## Random Forest Classifier
 
@@ -188,3 +192,7 @@ weighted avg       0.89      0.89      0.88     10000
 因爲 的預測效果普通，我想要使用 bagging 的方式增加準確度，我選擇嘗試 random forest classifier。
 
 結果顯示在判斷 churn=1 的 f1-score 比 decision tree classifier 的高出 0.1，訓練所花的時間增加了半小時以上。
+
+關於之後可以做的改進的方面，目前最佳超參數其中 n_estimators 的數值是 120 ，表示 random forest 長了 120 棵樹時得到了最佳結果，在我設定的 parameter grid 中是最高的數字，有可能再增加更高的參數會得到更好的結果。 
+
+另外也可以參考金融會計相關的知識，瞭解信貸評分參考的因素來源還有評分機制，比對此資料屬性有無重複，並建構更適合金融相關資料預測的演算法。
